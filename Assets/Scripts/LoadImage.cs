@@ -2,20 +2,24 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using DG.Tweening;
 
 public class LoadImage : MonoBehaviour
 {
    [SerializeField] private string url;
     private Image img;
+    // public float rotationSpeed;
 
     void Start()
     {
+        
         img = GetComponent<Image>();
-        StartCoroutine (GetImage());
+        
+       
     }
 
   
-    private IEnumerator GetImage()
+    public IEnumerator GetImage()
     {
         UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(url);
         
