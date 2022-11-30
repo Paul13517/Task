@@ -7,19 +7,19 @@ using DG.Tweening;
 public class LoadImage : MonoBehaviour
 {
    [SerializeField] private string url;
-    private Image img;
+    public Image img;
     // public float rotationSpeed;
 
     void Start()
     {
         
-        img = GetComponent<Image>();
-        
+
+         StartCoroutine(GetImage());
        
     }
 
   
-    public IEnumerator GetImage()
+    IEnumerator GetImage()
     {
         UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(url);
         
