@@ -7,13 +7,12 @@ using DG.Tweening;
 public class LoadImage : MonoBehaviour
 {
    [SerializeField] private string url;
-    public Image img;
-    // public float rotationSpeed;
 
-    void Start()
+    public Image[] img;
+    
+
+    public void StartLoading()
     {
-        
-
          StartCoroutine(GetImage());
        
     }
@@ -21,6 +20,7 @@ public class LoadImage : MonoBehaviour
   
     IEnumerator GetImage()
     {
+         for(int i = 0; i <  img.Length; i++){
         UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture(url);
         
         yield return webRequest.SendWebRequest();
@@ -30,13 +30,13 @@ public class LoadImage : MonoBehaviour
         }
         else{
             Texture texture = ((DownloadHandlerTexture)webRequest.downloadHandler).texture;
-
-            img.sprite = Sprite.Create((Texture2D)texture, new Rect (0,0,texture.width, texture.height), Vector2. zero);
-
+           
+            img[i].sprite = Sprite.Create((Texture2D)texture, new Rect (0,0,texture.width, texture.height), Vector2. zero);
+            yield return new WaitForSeconds(0.1f);
+            img[i].enabled = true;
+            }
 
         }
-
-
-
     }
+
 }

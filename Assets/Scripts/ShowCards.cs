@@ -7,61 +7,60 @@ using UnityEngine.Networking;
 public class ShowCards : MonoBehaviour
 {
 
-    public GameObject cardBack;
+    public GameObject[] cardsBack;
 
-    private bool coroutineAllowed, facedUp;
+    public GameObject[] cards;
+
+    public LoadImage lI;
+    
 
 
     void Start()
     {
-        facedUp = false;
+       OneByOne();    
+       
     }
-    private void Update(){
-
-       if(Input.GetMouseButtonDown(0)){
-         OnMouseDown();
-          }     
-        }
-
-    private void OnMouseDown()
-    {
-            StartCoroutine(RotateCards());
+    
+    public void OneByOne(){
+         
+        lI.StartLoading();
+        StartCoroutine(Sequence());
+        
+         
     }
-
-    private IEnumerator RotateCards()
-    {
+    private IEnumerator Sequence()
+    {    
+        
       
-
-        if (!facedUp)
-        {
-            for (float i = 0f; i <= 180f; i += 10f)
+        for(int i = 0; i < cardsBack.Length; i++){
+        
+        for (float j = 0f; j <= 180f; j += 10f)
             {
-                transform.rotation = Quaternion.Euler(0f, i, 0f);
-                if (i == 90f)
+                cards[i].transform.rotation = Quaternion.Euler(0f, j, 0f);
+                
+                
+                if (j == 90f)
                 {
-                    cardBack.SetActive(true);
+                    
+                    cardsBack[i].SetActive(true);
+                    
                 }
+                
                 yield return new WaitForSeconds(0.01f);
+                
             }
-        }
+   
+       }
+       
+   }
+   
 
 
-        else if (facedUp)
-        {
-            for (float i = 180f; i >= 0f; i -= 10f)
-            {
-                transform.rotation = Quaternion.Euler(0f, i, 0f);
-                if (i == 90f)
-                {
-                    gameObject.SetActive(false);
-                }
-                yield return new WaitForSeconds(0.01f);
-            }
-        }
-    }
 
 
 }
+
+
 
 
 

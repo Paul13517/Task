@@ -46,6 +46,7 @@
      <Compile Include="Assets\DOTween\Modules\DOTweenModulePhysics.cs" />
      <Compile Include="Assets\DOTween\Modules\DOTweenModuleUtils.cs" />
      <Compile Include="Assets\DOTween\Modules\DOTweenModuleSprite.cs" />
+     <Compile Include="Assets\Scripts\CardsManager.cs" />
      <None Include="Assets\DOTween\readme.txt" />
     <Reference Include="UnityEngine">
         <HintPath>D:\UnityHub\2020.3.29f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
